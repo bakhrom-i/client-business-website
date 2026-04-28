@@ -1,0 +1,42 @@
+# Render blueprint — deploys Spring Boot backend + Postgres in one click.
+# Use: https://render.com/docs/blueprint-spec
+#
+# Steps:
+#   1. Push this repo to GitHub
+#   2. On render.com → "New" → "Blueprint" → connect this repo
+#   3. Render reads this file and provisions the web service + Postgres
+#   4. Frontend on Vercel calls /api/* which proxies to the Render URL
+
+services:
+  - type: web
+    name: cbw-backend
+    runtime: docker
+    plan: free
+    healthCheckPath: /actuator/health
+    envVars:
+      - key: SPRING_PROFILES_ACTIVE
+        value: prod
+      - key: DB_USER
+        fromDatabase:
+          name: cbw-db
+          property: user
+      - key: DB_PASSWORD
+        fromDatabase:
+          name: cbw-db
+          property: password
+      - key: SPRING_DATASOURCE_URL
+        fromDatabase:
+          name: cbw-db
+          property: connectionString
+      - key: MAIL_HOST
+        sync: false
+      - key: MAIL_USER
+        sync: false
+      - key: MAIL_PASSWORD
+        sync: false
+
+databases:
+  - name: cbw-db
+    plan: free
+    databaseName: cbw_prod
+    user: cbw_user
