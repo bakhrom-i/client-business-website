@@ -29,10 +29,18 @@ services:
         fromDatabase:
           name: cbw-db
           property: password
-      - key: SPRING_DATASOURCE_URL
+      - key: DB_HOST
         fromDatabase:
           name: cbw-db
-          property: connectionString
+          property: host
+      - key: DB_PORT
+        fromDatabase:
+          name: cbw-db
+          property: port
+      - key: DB_NAME
+        fromDatabase:
+          name: cbw-db
+          property: database
       - key: MAIL_HOST
         sync: false
       - key: MAIL_USER
