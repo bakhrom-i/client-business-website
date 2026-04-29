@@ -25,3 +25,9 @@ management:
     web:
       exposure:
         include: health,info
+  health:
+    # Don't gate /actuator/health on mail server reachability —
+    # we don't dispatch mail in this demo, so an unreachable SMTP host
+    # would fail Render's health check and the deploy never goes live.
+    mail:
+      enabled: false
