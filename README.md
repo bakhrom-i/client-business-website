@@ -2,7 +2,9 @@
 
 > Custom responsive marketing site with CMS-backed blog, contact forms, and SEO optimization. Built for a small business looking to grow online.
 
-**🌐 Live demo:** https://cbw-frontend.vercel.app *(replace with your URL after deploy)*
+**🌐 Live demo:** https://cbw-frontend.vercel.app
+**🔌 API:** https://cbw-backend.onrender.com/api/posts (try it — returns JSON of seeded blog posts)
+**❤️ Health:** https://cbw-backend.onrender.com/actuator/health
 
 ![Build](https://img.shields.io/badge/build-passing-brightgreen) ![License](https://img.shields.io/badge/license-MIT-blue) ![Java](https://img.shields.io/badge/java-17-orange) ![Angular](https://img.shields.io/badge/angular-17-red)
 
@@ -83,7 +85,7 @@ npm start
 
 1. On [render.com](https://render.com), click **New** → **Blueprint**
 2. Connect this repo, select branch `main`
-3. Render reads `backend/render.yaml` and provisions the web service + Postgres
+3. Render reads `render.yaml` (at repo root) and provisions the web service + Postgres
 4. Update the `destination` URL in `frontend/vercel.json` to the Render-generated URL
 5. Redeploy frontend on Vercel
 
