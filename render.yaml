@@ -1,9 +1,12 @@
 # Render blueprint — deploys Spring Boot backend + Postgres in one click.
 # Use: https://render.com/docs/blueprint-spec
 #
+# This file MUST live at the repo root (Render's default Blueprint Path).
+# The Dockerfile lives in backend/, so we point at it explicitly below.
+#
 # Steps:
 #   1. Push this repo to GitHub
-#   2. On render.com → "New" → "Blueprint" → connect this repo
+#   2. On render.com -> "New" -> "Blueprint" -> connect this repo
 #   3. Render reads this file and provisions the web service + Postgres
 #   4. Frontend on Vercel calls /api/* which proxies to the Render URL
 
@@ -13,6 +16,8 @@ services:
     runtime: docker
     plan: free
     healthCheckPath: /actuator/health
+    rootDir: backend
+    dockerfilePath: ./Dockerfile
     envVars:
       - key: SPRING_PROFILES_ACTIVE
         value: prod
