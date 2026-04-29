@@ -9,4 +9,6 @@ FROM eclipse-temurin:17-jre
 WORKDIR /app
 COPY --from=build /app/target/*.jar app.jar
 EXPOSE 8080
-ENTRYPOINT ["java", "-Dserver.port=${PORT:-8080}", "-jar", "/app/app.jar"]
+# Spring Boot reads $PORT from env via application-prod.yml's ${PORT:8080}.
+# Do not interpolate ${PORT} here — JSON-form ENTRYPOINT does not run a shell.
+ENTRYPOINT ["java", "-jar", "/app/app.jar"]
